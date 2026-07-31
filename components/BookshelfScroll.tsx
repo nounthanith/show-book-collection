@@ -7,6 +7,7 @@ import { ChevronDown } from "lucide-react";
 interface BookshelfScrollProps {
   books: Book[];
   onSelectBook: (book: Book) => void;
+  loading?: boolean;
 }
 
 const PAGE_SIZE = 10;
@@ -26,7 +27,7 @@ const SPINE_STYLES = [
   { bg: "bg-[#6b2d5c] text-rose-100", width: "w-20 sm:w-22", height: "h-[42vh] min-h-68" },
 ];
 
-export default function BookshelfScroll({ books, onSelectBook }: BookshelfScrollProps) {
+export default function BookshelfScroll({ books, onSelectBook, loading = false }: BookshelfScrollProps) {
   const shelfRef = useRef<HTMLDivElement>(null);
   const [visibleCount, setVisibleCount] = useState(PAGE_SIZE);
 
@@ -59,7 +60,21 @@ export default function BookshelfScroll({ books, onSelectBook }: BookshelfScroll
         className="w-full flex gap-4 items-end overflow-x-auto no-scrollbar pb-8 pt-6 px-4 scroll-smooth"
         style={{ scrollbarWidth: "none", msOverflowStyle: "none" }}
       >
-        {books.length === 0 && (
+        {loading && (
+          <>
+            {Array.from({ length: 10 }).map((_, idx) => {
+              const s = SPINE_STYLES[idx % SPINE_STYLES.length];
+              return (
+                <div
+                  key={`skeleton-${idx}`}
+                  className={`group relative shrink-0 first:ml-auto last:mr-auto ${s.width} ${s.height} rounded-xs bg-stone-300/70 animate-pulse border-l border-white/30`}
+                />
+              );
+            })}
+          </>
+        )}
+
+        {!loading && books.length === 0 && (
           <div className="w-full mx-auto h-64 flex flex-col items-center justify-center text-center">
             <p className="font-editorial text-2xl font-bold text-stone-800">
               No books found

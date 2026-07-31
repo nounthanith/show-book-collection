@@ -12,6 +12,7 @@ import UploadBookModal from "@/components/UploadBookModal";
 
 export default function Home() {
   const [books, setBooks] = useState<Book[]>([]);
+  const [isLoading, setIsLoading] = useState(true);
   const [searchQuery, setSearchQuery] = useState("");
   const [activeBookForReader, setActiveBookForReader] = useState<Book | null>(null);
   const [isUploadOpen, setIsUploadOpen] = useState(false);
@@ -42,9 +43,13 @@ export default function Home() {
 
         if (!cancelled) {
           setBooks(apiBooks);
+          setIsLoading(false);
         }
       } catch (err) {
         console.error("Failed to load books:", err);
+        if (!cancelled) {
+          setIsLoading(false);
+        }
       }
     };
 
@@ -92,6 +97,7 @@ export default function Home() {
           <BookshelfScroll
             key={searchQuery}
             books={filteredBooks}
+            loading={isLoading}
             onSelectBook={(book) => setActiveBookForReader(book)}
           />
         </div>
