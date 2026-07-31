@@ -85,7 +85,13 @@ export default function BookshelfScroll({ books, onSelectBook }: BookshelfScroll
               </div>
 
               <div className="my-auto flex items-center justify-center overflow-hidden">
-                <span className="font-editorial text-xs sm:text-sm font-black tracking-wider uppercase text-center [writing-mode:vertical-rl] rotate-180 line-clamp-1 truncate max-h-full">
+                <span
+                  className="font-editorial text-xs sm:text-sm font-black tracking-wider uppercase text-center max-h-full overflow-hidden"
+                  style={{
+                    writingMode: "vertical-rl",
+                    transform: "rotate(180deg)",
+                  }}
+                >
                   {book.title}
                 </span>
               </div>
