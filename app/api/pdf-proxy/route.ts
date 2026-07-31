@@ -7,6 +7,7 @@ const ALLOWED_HOSTS = new Set([
   "www.gutenberg.org",
   "gutenberg.org",
   "www.w3.org",
+  "archive.org",
 ]);
 
 export async function GET(request: NextRequest) {

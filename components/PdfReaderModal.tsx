@@ -67,7 +67,7 @@ export default function PdfReaderModal({ book, onClose }: PdfReaderModalProps) {
             </div>
             <div className="min-w-0">
               <span className="text-[9px] sm:text-[10px] font-bold uppercase tracking-[0.25em] text-amber-700">
-                JZA • Reading Room
+                NITH • Reading Room
               </span>
               <h3 className="font-editorial font-black text-base sm:text-xl tracking-tight text-stone-900 truncate">
                 {book.title}
