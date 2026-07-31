@@ -4,6 +4,7 @@ import React, { useEffect, useRef, useState } from "react";
 import { Book } from "@/types/book";
 import { X, Download, Share2, Maximize2, Minimize2, ExternalLink, BookOpen, Star, Sun, Moon } from "lucide-react";
 import gsap from "gsap";
+import PdfCanvasViewer from "./PdfCanvasViewer";
 
 interface PdfReaderModalProps {
   book: Book | null;
@@ -160,11 +161,7 @@ export default function PdfReaderModal({ book, onClose }: PdfReaderModalProps) {
             : "bg-linear-to-b from-[#ebe9e1] to-[#e2dfd4]"
             }`}
         >
-          <iframe
-            src={`${book.pdfUrl}#toolbar=1&navpanes=1`}
-            className="w-full h-full border-0"
-            title={book.title}
-          />
+          <PdfCanvasViewer url={book.pdfUrl} dark={readerTheme === "dark"} />
         </div>
 
         <div className="px-4 sm:px-6 py-2.5 bg-white/70 backdrop-blur border-t border-stone-200 flex items-center justify-between gap-4">
