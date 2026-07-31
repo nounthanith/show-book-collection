@@ -2,9 +2,9 @@ import { NextRequest } from "next/server";
 import { promises as fs } from "fs";
 import path from "path";
 import { randomUUID } from "crypto";
-import { put } from "@vercel/blob";
 import type { Book } from "@/types/book";
 import { dbConnect } from "@/lib/mongoose";
+import { isR2Configured, uploadPdfToR2 } from "@/lib/r2";
 import BookModel from "@/models/Book";
 
 export const dynamic = "force-dynamic";
@@ -144,12 +144,9 @@ export async function POST(request: NextRequest) {
 
       const filename = `${Date.now()}-${randomUUID()}.pdf`;
 
-      if (process.env.BLOB_READ_WRITE_TOKEN) {
-        const blob = await put(`uploads/${filename}`, pdfFile, {
-          access: "public",
-          contentType: "application/pdf",
-        });
-        pdfUrl = blob.url;
+      if (isR2Configured()) {
+        const buffer = Buffer.from(await pdfFile.arrayBuffer());
+        pdfUrl = await uploadPdfToR2(buffer, `uploads/${filename}`);
       } else {
         await fs.mkdir(UPLOADS_DIR, { recursive: true });
         await fs.writeFile(
