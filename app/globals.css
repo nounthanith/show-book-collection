@@ -1,26 +1,93 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
-
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
+@layer base {
   :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+    --bg-main: #f4f3ee;
+    --bg-surface: #ebe9e1;
+    --bg-card: #ffffff;
+    --text-primary: #181716;
+    --text-secondary: #5c554e;
+    --border-color: rgba(0, 0, 0, 0.08);
   }
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background-color: var(--bg-main);
+  color: var(--text-primary);
+  font-family: var(--font-geist-sans), system-ui, sans-serif;
+  overflow-x: hidden;
+  letter-spacing: -0.01em;
+}
+
+.font-editorial {
+  font-family: var(--font-playfair), Georgia, serif;
+}
+
+.font-cormorant {
+  font-family: var(--font-cormorant), Georgia, serif;
+}
+
+/* Hide Scrollbars */
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+/* Glass & Header Utilities */
+.glass-nav-clean {
+  background: rgba(244, 243, 238, 0.92);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-bottom: 1px solid var(--border-color);
+}
+
+/* Reference UI Tile Palette - Vibrant Clean Light Mode Colors */
+.tile-bg-coral { background-color: #df5847; }
+.tile-bg-navy { background-color: #0f4c7f; }
+.tile-bg-maroon { background-color: #5c1f44; }
+.tile-bg-sage { background-color: #afc3c4; }
+.tile-bg-white { background-color: #ffffff; }
+.tile-bg-charcoal { background-color: #495452; }
+.tile-bg-amber { background-color: #cc8438; }
+.tile-bg-olive { background-color: #4c5b3c; }
+.tile-bg-rose { background-color: #c7636e; }
+.tile-bg-teal { background-color: #2b6d77; }
+
+/* Book Mat & Floating Shadow Effect */
+.editorial-book-container {
+  perspective: 1000px;
+}
+
+.editorial-book-mat {
+  background-color: #ffffff;
+  box-shadow: 0 12px 28px -4px rgba(0, 0, 0, 0.16), 0 0 0 1px rgba(0, 0, 0, 0.04);
+}
+
+.editorial-book-cover {
+  box-shadow: 6px 12px 26px -3px rgba(0, 0, 0, 0.28);
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.4s ease;
+}
+
+.editorial-tile:hover .editorial-book-cover {
+  transform: translateY(-8px) rotateY(-6deg) scale(1.02);
+  box-shadow: 12px 20px 34px -3px rgba(0, 0, 0, 0.36);
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(92, 85, 78, 0.25);
+  border-radius: 9999px;
 }

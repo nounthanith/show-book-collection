@@ -2,7 +2,7 @@ This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-
 
 ## Getting Started
 
-First, run the development server:
+First, set up MongoDB (see [Database Setup](#database-setup) below), then run the development server:
 
 ```bash
 npm run dev
@@ -15,6 +15,33 @@ bun dev
 ```
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+
+## Database Setup
+
+Books are stored in MongoDB using Mongoose. You need a running MongoDB instance and a connection string:
+
+1. **Get a MongoDB instance** (pick one):
+   - **MongoDB Atlas (free cloud)**: create a cluster at https://www.mongodb.com/atlas, add your IP to the network access list, create a database user, and copy the connection string from *Connect → Drivers* (it looks like `mongodb+srv://<user>:<password>@cluster0.xxxxx.mongodb.net/personal_library`).
+   - **Local MongoDB**: install MongoDB Community and it will run at `mongodb://127.0.0.1:27017`.
+   - **Docker**: `docker run --name library-mongo -p 27017:27017 -d mongo`
+
+2. **Configure the connection string**:
+
+```bash
+cp .env.local.example .env.local
+```
+
+   Then edit `.env.local` and set `MONGODB_URI` to your real connection string.
+
+3. **Seed the sample books** (migrates the curated collection from `data/books.ts` into the database; safe to re-run — it upserts by book id):
+
+```bash
+npm run db:seed
+```
+
+User-uploaded PDF books are saved to the database through `POST /api/books`; the PDF files themselves are stored under `public/uploads`.
+
+If the database is unreachable, the app falls back to the local sample collection so the UI still renders.
 
 You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
 
