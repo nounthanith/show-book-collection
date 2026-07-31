@@ -9,7 +9,6 @@ async function main() {
       try {
         process.loadEnvFile(".env.local");
       } catch {
-        // .env.local may not exist; fall back to shell env
       }
     }
 

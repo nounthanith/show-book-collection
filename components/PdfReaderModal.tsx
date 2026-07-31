@@ -57,10 +57,8 @@ export default function PdfReaderModal({ book, onClose }: PdfReaderModalProps) {
         className={`w-full flex flex-col bg-[#faf9f4] text-stone-900 rounded-xs overflow-hidden shadow-2xl border border-stone-300/60 transition-all duration-300 ${isFullscreen ? "h-full max-w-full rounded-none" : "h-[92vh] max-w-6xl"
           }`}
       >
-        {/* Top Control Bar */}
         <div className="px-4 sm:px-6 py-3 bg-white/70 backdrop-blur border-b border-stone-200 flex items-center justify-between gap-4 flex-wrap">
 
-          {/* Left: Book Meta */}
           <div className="flex items-center gap-3 min-w-0">
             <div className={`relative w-10 h-14 sm:w-11 sm:h-16 rounded-sm bg-linear-to-tr ${book.gradient} shrink-0 flex items-center justify-center shadow-md overflow-hidden border-l-2 border-black/15`}>
               <div className="absolute top-0 bottom-0 left-0 w-1 bg-linear-to-r from-black/25 to-transparent" />
@@ -81,15 +79,12 @@ export default function PdfReaderModal({ book, onClose }: PdfReaderModalProps) {
             </div>
           </div>
 
-          {/* Right: Actions & Controls */}
           <div className="flex items-center gap-2">
 
-            {/* Category Pill */}
             <span className="hidden lg:inline-flex px-3 py-1.5 rounded-full text-[10px] font-bold uppercase tracking-widest bg-stone-200/80 text-stone-700 border border-stone-300/50">
               {book.category}
             </span>
 
-            {/* Toggle Reader Theme */}
             <button
               onClick={() => setReaderTheme(readerTheme === "dark" ? "light" : "dark")}
               title="Toggle Reader Paper Tone"
@@ -102,7 +97,6 @@ export default function PdfReaderModal({ book, onClose }: PdfReaderModalProps) {
               )}
             </button>
 
-            {/* Direct Open in New Tab */}
             <a
               href={book.pdfUrl}
               target="_blank"
@@ -113,7 +107,6 @@ export default function PdfReaderModal({ book, onClose }: PdfReaderModalProps) {
               <ExternalLink className="w-4 h-4" />
             </a>
 
-            {/* Share Link */}
             <button
               onClick={handleShare}
               title="Copy PDF Link"
@@ -127,7 +120,6 @@ export default function PdfReaderModal({ book, onClose }: PdfReaderModalProps) {
               )}
             </button>
 
-            {/* Download PDF */}
             <a
               href={book.pdfUrl}
               download
@@ -139,7 +131,6 @@ export default function PdfReaderModal({ book, onClose }: PdfReaderModalProps) {
               <span className="hidden sm:inline">Download</span>
             </a>
 
-            {/* Toggle Fullscreen */}
             <button
               onClick={toggleFullscreen}
               title="Toggle Fullscreen"
@@ -152,7 +143,6 @@ export default function PdfReaderModal({ book, onClose }: PdfReaderModalProps) {
               )}
             </button>
 
-            {/* Close Modal */}
             <button
               onClick={onClose}
               title="Close Reader"
@@ -164,7 +154,6 @@ export default function PdfReaderModal({ book, onClose }: PdfReaderModalProps) {
           </div>
         </div>
 
-        {/* Embedded PDF Canvas/Frame */}
         <div
           className={`flex-1 w-full h-full relative ${readerTheme === "dark"
             ? "bg-[#201d18]"
@@ -178,7 +167,6 @@ export default function PdfReaderModal({ book, onClose }: PdfReaderModalProps) {
           />
         </div>
 
-        {/* Bottom Editorial Meta Bar */}
         <div className="px-4 sm:px-6 py-2.5 bg-white/70 backdrop-blur border-t border-stone-200 flex items-center justify-between gap-4">
           <div className="flex items-center gap-2 overflow-x-auto no-scrollbar">
             {book.tags.map((tag) => (

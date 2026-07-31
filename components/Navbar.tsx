@@ -19,7 +19,6 @@ export default function Navbar({
   return (
     <header className="sticky top-0 z-40 w-full glass-nav-clean transition-all duration-300">
       <div className="w-full px-4 sm:px-12 lg:px-16 py-3 md:py-0 md:h-20 flex flex-wrap md:flex-nowrap items-center gap-3 md:gap-6">
-        {/* Brand Logo */}
         <div className="flex items-center gap-2 md:gap-3">
           <div className="w-8 h-8 md:w-9 md:h-9 rounded-full bg-stone-900 text-stone-100 flex items-center justify-center shadow shrink-0">
             <BookOpen className="w-3.5 h-3.5 md:w-4 md:h-4" />
@@ -32,7 +31,6 @@ export default function Navbar({
           </div>
         </div>
 
-        {/* Action Button & Book Count */}
         <div className="flex items-center gap-3 md:gap-4 ml-auto md:order-3">
           <span className="hidden lg:inline text-xs font-bold uppercase tracking-wider text-stone-500">
             {bookCount} Books Available
@@ -47,7 +45,6 @@ export default function Navbar({
           </button>
         </div>
 
-        {/* Minimal Search Bar */}
         <div className="w-full md:w-auto md:flex-1 md:max-w-md md:mx-4 md:order-2">
           <div className="relative group">
             <Search className="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-stone-400 group-focus-within:text-stone-900 transition-colors" />

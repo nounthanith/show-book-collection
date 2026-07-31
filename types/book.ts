@@ -4,7 +4,7 @@ export interface Book {
   author: string;
   description: string;
   category: "Literature" | "Technology" | "Science" | "Philosophy" | "Business" | "Art & Design";
-  gradient: string; // Cover background styling
+  gradient: string;
   tileBg: "tile-bg-coral" | "tile-bg-navy" | "tile-bg-maroon" | "tile-bg-sage" | "tile-bg-white" | "tile-bg-charcoal" | "tile-bg-amber" | "tile-bg-olive" | "tile-bg-rose" | "tile-bg-teal";
   coverTextColor: string;
   pdfUrl: string;

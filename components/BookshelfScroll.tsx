@@ -37,7 +37,6 @@ export default function BookshelfScroll({ books, onSelectBook }: BookshelfScroll
     setVisibleCount((count) => count + PAGE_SIZE);
   };
 
-  // Convert vertical mouse wheel into horizontal shelf scrolling (same as touch swipe)
   useEffect(() => {
     const el = shelfRef.current;
     if (!el) return;
@@ -55,7 +54,6 @@ export default function BookshelfScroll({ books, onSelectBook }: BookshelfScroll
 
   return (
     <div className="relative w-full h-full flex flex-col justify-center">
-      {/* Horizontal Scrollable Standing Books */}
       <div
         ref={shelfRef}
         className="w-full flex gap-4 items-end overflow-x-auto no-scrollbar pb-8 pt-6 px-4 scroll-smooth"
@@ -100,10 +98,8 @@ export default function BookshelfScroll({ books, onSelectBook }: BookshelfScroll
         })}
       </div>
 
-      {/* Wooden Shelf Base */}
       <div className="w-full h-3 bg-stone-400/40 rounded-full shadow-inner" />
 
-      {/* Show More Pagination */}
       {hasMore && (
         <div className="w-full flex flex-col items-center justify-center mt-5">
           <button

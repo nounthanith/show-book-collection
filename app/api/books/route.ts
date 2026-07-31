@@ -2,6 +2,7 @@ import { NextRequest } from "next/server";
 import { promises as fs } from "fs";
 import path from "path";
 import { randomUUID } from "crypto";
+import { put } from "@vercel/blob";
 import type { Book } from "@/types/book";
 import { dbConnect } from "@/lib/mongoose";
 import BookModel from "@/models/Book";
@@ -11,7 +12,7 @@ export const runtime = "nodejs";
 
 const UPLOADS_DIR = path.join(process.cwd(), "public", "uploads");
 
-const MAX_FILE_SIZE = 25 * 1024 * 1024; // 25 MB
+const MAX_FILE_SIZE = 25 * 1024 * 1024;
 
 const VALID_CATEGORIES: Book["category"][] = [
   "Literature",
@@ -142,13 +143,22 @@ export async function POST(request: NextRequest) {
       }
 
       const filename = `${Date.now()}-${randomUUID()}.pdf`;
-      await fs.mkdir(UPLOADS_DIR, { recursive: true });
-      await fs.writeFile(
-        path.join(UPLOADS_DIR, filename),
-        Buffer.from(await pdfFile.arrayBuffer())
-      );
 
-      pdfUrl = `/uploads/${filename}`;
+      if (process.env.BLOB_READ_WRITE_TOKEN) {
+        const blob = await put(`uploads/${filename}`, pdfFile, {
+          access: "public",
+          contentType: "application/pdf",
+        });
+        pdfUrl = blob.url;
+      } else {
+        await fs.mkdir(UPLOADS_DIR, { recursive: true });
+        await fs.writeFile(
+          path.join(UPLOADS_DIR, filename),
+          Buffer.from(await pdfFile.arrayBuffer())
+        );
+        pdfUrl = `/uploads/${filename}`;
+      }
+
       fileSize = `${Math.max(0.1, pdfFile.size / (1024 * 1024)).toFixed(1)} MB`;
     }
 

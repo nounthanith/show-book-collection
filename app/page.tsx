@@ -16,7 +16,6 @@ export default function Home() {
   const [activeBookForReader, setActiveBookForReader] = useState<Book | null>(null);
   const [isUploadOpen, setIsUploadOpen] = useState(false);
 
-  // Load books from the database API (with local fallback)
   useEffect(() => {
     let cancelled = false;
 
@@ -79,7 +78,6 @@ export default function Home() {
 
   return (
     <div className="h-screen w-screen flex flex-col overflow-hidden bg-[#f4f3ee] text-[#181716] font-sans selection:bg-amber-400">
-      {/* Fixed Top Navbar */}
       <Navbar
         searchQuery={searchQuery}
         setSearchQuery={setSearchQuery}
@@ -87,7 +85,6 @@ export default function Home() {
         bookCount={books.length}
       />
 
-      {/* Hero Top / Books Middle / Footer Bottom on mobile, 3 columns on desktop */}
       <main className="flex-1 w-full min-h-0 flex flex-col md:flex-row items-stretch">
         <Hero />
 
@@ -102,13 +99,11 @@ export default function Home() {
         <Footer />
       </main>
 
-      {/* PDF Reader Modal */}
       <PdfReaderModal
         book={activeBookForReader}
         onClose={() => setActiveBookForReader(null)}
       />
 
-      {/* Custom PDF Upload Modal */}
       <UploadBookModal
         isOpen={isUploadOpen}
         onClose={() => setIsUploadOpen(false)}
