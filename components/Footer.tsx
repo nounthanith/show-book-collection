@@ -11,12 +11,12 @@ export default function Footer() {
           <BookOpen className="w-3 h-3 md:w-4 md:h-4" />
         </div>
         <div className="font-editorial text-xs md:text-base font-black tracking-tight text-stone-900">
-          JZA Curations
+          NITH Curations
         </div>
       </div>
 
       <p className="md:hidden text-[10px] text-stone-500 font-medium">
-        &copy; {new Date().getFullYear()} JZA
+        &copy; {new Date().getFullYear()} Nuon Thanith
       </p>
 
       <div className="hidden md:block mt-8 text-xs text-stone-500 font-medium leading-relaxed space-y-2">

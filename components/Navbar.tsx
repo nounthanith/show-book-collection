@@ -24,7 +24,7 @@ export default function Navbar({
             <BookOpen className="w-3.5 h-3.5 md:w-4 md:h-4" />
           </div>
           <div className="font-editorial text-lg md:text-2xl font-black tracking-tight text-stone-900 whitespace-nowrap">
-            JZA{" "}
+            NITH{" "}
             <span className="font-cormorant italic font-normal text-stone-500 text-sm md:text-lg">
               Curations
             </span>
