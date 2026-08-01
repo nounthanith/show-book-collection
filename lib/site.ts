@@ -1,5 +1,5 @@
 export const SITE_URL =
-  process.env.NEXT_PUBLIC_SITE_URL ?? "https://show-book-collection.vercel.app";
+  process.env.NEXT_PUBLIC_SITE_URL ?? "https://ntihbookcollection.vercel.app";
 
 export const SITE_NAME = "The Personal Curation";
 
