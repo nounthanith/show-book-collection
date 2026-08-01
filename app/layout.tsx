@@ -34,6 +34,9 @@ export const metadata: Metadata = {
     default: SITE_NAME,
     template: `%s | ${SITE_NAME}`,
   },
+  icons: {
+    icon: "/logo.png",
+  },
   description: SITE_DESCRIPTION,
   applicationName: SITE_NAME,
   keywords: [
@@ -115,7 +118,7 @@ export default function RootLayout({
       suppressHydrationWarning
     >
       {/* logo */}
-      <link rel="icon" href="/logo.webp" />
+      <link rel="icon" href="/logo.png" />
       <body className="min-h-full flex flex-col font-sans transition-colors duration-400 bg-[#f4f3ee] text-[#181716]">
         <JsonLd data={websiteJsonLd} />
         <JsonLd data={booksJsonLd} />
